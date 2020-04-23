@@ -1,0 +1,27 @@
+#version 430
+
+#define WORKGROUP_SIZE 1
+layout( local_size_x = WORKGROUP_SIZE, local_size_y = WORKGROUP_SIZE ) in;
+
+layout(std430, binding = 1) buffer CurrentHeights
+{
+    float Hcurr[];
+};
+
+uniform ivec2 rand_vec;
+uniform int width;
+uniform float strength = 0.004f;
+void main()
+{
+    for (int i = -3; i < 4; i++)
+        for (int j = -3; j < 4; j++)
+        {
+            float v = 6.0 - i * i - j * j;
+            if(v < 0.0f)  
+                v = 0.0f;
+            int i1 = i + rand_vec.x + 3;
+            int j1 = j + rand_vec.y + 3;
+
+            Hcurr[i1 + j1 * width] -= v * strength;
+        }
+}

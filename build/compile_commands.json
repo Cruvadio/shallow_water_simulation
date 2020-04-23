@@ -1,0 +1,417 @@
+[
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build",
+  "command": "/usr/bin/gcc-7  -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -Wnarrowing -o CMakeFiles/main.dir/src/glad.c.o   -c /home/cruvadio/shallow_water_simulation/src/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/src/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build",
+  "command": "/usr/bin/g++-7   -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -Wnarrowing -std=gnu++11 -o CMakeFiles/main.dir/src/main.cpp.o -c /home/cruvadio/shallow_water_simulation/src/main.cpp",
+  "file": "/home/cruvadio/shallow_water_simulation/src/main.cpp"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build",
+  "command": "/usr/bin/g++-7   -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -Wnarrowing -std=gnu++11 -o CMakeFiles/main.dir/src/ShaderProgram.cpp.o -c /home/cruvadio/shallow_water_simulation/src/ShaderProgram.cpp",
+  "file": "/home/cruvadio/shallow_water_simulation/src/ShaderProgram.cpp"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build",
+  "command": "/usr/bin/g++-7   -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -Wnarrowing -std=gnu++11 -o CMakeFiles/main.dir/src/WaterShaderProgram.cpp.o -c /home/cruvadio/shallow_water_simulation/src/WaterShaderProgram.cpp",
+  "file": "/home/cruvadio/shallow_water_simulation/src/WaterShaderProgram.cpp"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/context.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/context.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/context.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/init.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/init.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/init.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/input.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/input.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/input.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/monitor.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/monitor.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/monitor.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/vulkan.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/vulkan.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/vulkan.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/window.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/window.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/window.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/x11_init.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/x11_init.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/x11_init.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/x11_monitor.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/x11_monitor.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/x11_monitor.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/x11_window.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/x11_window.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/x11_window.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/xkb_unicode.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/xkb_unicode.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/xkb_unicode.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/linux_joystick.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/linux_joystick.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/linux_joystick.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/posix_time.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/posix_time.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/posix_time.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/posix_tls.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/posix_tls.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/posix_tls.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/glx_context.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/glx_context.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/glx_context.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/egl_context.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/egl_context.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/egl_context.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/wave.dir/wave.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/wave.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/wave.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/wave.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/gears.dir/gears.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/gears.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/gears.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/gears.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/boing.dir/boing.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/boing.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/boing.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/boing.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/heightmap.dir/heightmap.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/heightmap.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/heightmap.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/heightmap.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/particles.dir/particles.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/particles.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/particles.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/particles.dir/__/deps/tinycthread.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/tinycthread.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/tinycthread.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/particles.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/particles.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/splitview.dir/splitview.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/splitview.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/splitview.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/splitview.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/simple.dir/simple.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/simple.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/examples/simple.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/examples",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/simple.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/title.dir/title.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/title.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/title.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/title.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/cursor.dir/cursor.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/cursor.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/cursor.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/cursor.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/msaa.dir/msaa.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/msaa.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/msaa.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/msaa.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/msaa.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/glfwinfo.dir/glfwinfo.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/glfwinfo.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/glfwinfo.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/glfwinfo.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/glfwinfo.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/threads.dir/threads.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/threads.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/threads.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/threads.dir/__/deps/tinycthread.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/tinycthread.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/tinycthread.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/threads.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/clipboard.dir/clipboard.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/clipboard.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/clipboard.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/clipboard.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/clipboard.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/monitors.dir/monitors.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/monitors.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/monitors.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/monitors.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/monitors.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/iconify.dir/iconify.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/iconify.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/iconify.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/iconify.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/iconify.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/gamma.dir/gamma.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/gamma.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/gamma.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/gamma.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/gamma.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/vulkan.dir/vulkan.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/vulkan.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/vulkan.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/events.dir/events.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/events.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/events.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/events.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/events.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/icon.dir/icon.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/icon.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/icon.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/icon.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/sharing.dir/sharing.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/sharing.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/sharing.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/sharing.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/joysticks.dir/joysticks.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/joysticks.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/joysticks.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/joysticks.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/reopen.dir/reopen.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/reopen.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/reopen.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/reopen.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/timeout.dir/timeout.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/timeout.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/timeout.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/timeout.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/windows.dir/windows.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/windows.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/windows.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/windows.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/windows.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/empty.dir/empty.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/empty.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/empty.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/empty.dir/__/deps/tinycthread.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/tinycthread.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/tinycthread.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/empty.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/tearing.dir/tearing.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/tearing.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/tests/tearing.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/tearing.dir/__/deps/getopt.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/getopt.c"
+},
+{
+  "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/tests",
+  "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -o CMakeFiles/tearing.dir/__/deps/glad.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c",
+  "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/deps/glad.c"
+}
+]

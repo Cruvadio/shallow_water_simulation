@@ -1,0 +1,82 @@
+#version 430
+
+#define WORKGROUP_SIZE 16
+layout( local_size_x = WORKGROUP_SIZE, local_size_y = WORKGROUP_SIZE ) in;
+
+uniform int width;
+uniform int height;
+
+layout(std430, binding = 0) buffer PreviousHeights
+{
+    float Hprev[];
+};
+
+layout(std430, binding = 1) buffer CurrentHeights
+{
+    float Hcurr[];
+};
+
+layout(std430, binding = 2) buffer NextHeights
+{
+    float Hnext[];
+};
+
+
+layout(std430, binding = 3) buffer OutputPositions
+{
+    vec4 outputPositions[];
+};
+
+layout(std430, binding = 4) buffer OutputNormals
+{
+    vec4 outputNormals[];
+};
+
+uniform ivec2 rand_vec;
+uniform int probability;
+uniform bool allow_drop;
+
+void main ()
+{
+    /*
+    if((probability & width) == 0 && allow_drop)
+    {
+        for (int i = -3; i < 4; i++)
+            for (int j = -3; j < 4; j++)
+            {
+                float v = 6.0 - i * i - j * j;
+                if(v < 0.0f)  
+                    v = 0.0f;
+                int i1 = i + rand_vec.x + 3;
+                int j1 = j + rand_vec.y + 3;
+
+                Hcurr[i1 + j1 * width] -= v * 0.004f;
+            }
+    }*/
+    int i = int(gl_GlobalInvocationID.x);
+    int j = int(gl_GlobalInvocationID.y);
+    
+
+    
+
+    if (i < 0 || i > width - 1 || j < 0 || j > height - 1) 
+        if (Hnext[i + j * width] < 1e-8) 
+                Hnext[i + j * width] = 0.0;
+
+
+    //outputPositions[i + j * width].z = 0.;
+    //outputPositions[i + j * width].x = (0.5 - float(width - i)/float(width)) * 2.;
+    //outputPositions[i + j * width].y = (0.5 - float(j)/float(height)) * 2.;
+    outputPositions[i + j * width].z = Hcurr[i + j * width];
+    outputNormals[i + j * width].x = Hcurr[i - 1 + j * width] - Hcurr[i + 1 + j * width];
+    outputNormals[i + j * width].y = Hcurr[i + (j-1) * width] - Hcurr[i + (j+1) * width];
+
+#define omega 1.985f  
+    
+    Hnext[i + j * width] = ((1 - omega) * Hprev[i + j * width] + omega *
+                            (Hcurr[i - 1 + j * width] +
+                             Hcurr[i + 1 + j * width] +
+                             Hcurr[i + (j + 1) * width] +
+                             Hcurr[i + (j - 1) * width]) * 0.25);
+    if (Hnext[i + j * width] < 1e-8) Hnext[i + j * width] = 0.0;
+}
