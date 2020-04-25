@@ -546,6 +546,33 @@ docs/fast:
 	$(MAKE) -f external/glfw-3.2.1/docs/CMakeFiles/docs.dir/build.make external/glfw-3.2.1/docs/CMakeFiles/docs.dir/build
 .PHONY : docs/fast
 
+src/Pool.o: src/Pool.cpp.o
+
+.PHONY : src/Pool.o
+
+# target to build an object file
+src/Pool.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Pool.cpp.o
+.PHONY : src/Pool.cpp.o
+
+src/Pool.i: src/Pool.cpp.i
+
+.PHONY : src/Pool.i
+
+# target to preprocess a source file
+src/Pool.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Pool.cpp.i
+.PHONY : src/Pool.cpp.i
+
+src/Pool.s: src/Pool.cpp.s
+
+.PHONY : src/Pool.s
+
+# target to generate assembly for a file
+src/Pool.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Pool.cpp.s
+.PHONY : src/Pool.cpp.s
+
 src/ShaderProgram.o: src/ShaderProgram.cpp.o
 
 .PHONY : src/ShaderProgram.o
@@ -573,6 +600,33 @@ src/ShaderProgram.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/ShaderProgram.cpp.s
 .PHONY : src/ShaderProgram.cpp.s
 
+src/Skybox.o: src/Skybox.cpp.o
+
+.PHONY : src/Skybox.o
+
+# target to build an object file
+src/Skybox.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Skybox.cpp.o
+.PHONY : src/Skybox.cpp.o
+
+src/Skybox.i: src/Skybox.cpp.i
+
+.PHONY : src/Skybox.i
+
+# target to preprocess a source file
+src/Skybox.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Skybox.cpp.i
+.PHONY : src/Skybox.cpp.i
+
+src/Skybox.s: src/Skybox.cpp.s
+
+.PHONY : src/Skybox.s
+
+# target to generate assembly for a file
+src/Skybox.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Skybox.cpp.s
+.PHONY : src/Skybox.cpp.s
+
 src/WaterShaderProgram.o: src/WaterShaderProgram.cpp.o
 
 .PHONY : src/WaterShaderProgram.o
@@ -599,6 +653,33 @@ src/WaterShaderProgram.s: src/WaterShaderProgram.cpp.s
 src/WaterShaderProgram.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/WaterShaderProgram.cpp.s
 .PHONY : src/WaterShaderProgram.cpp.s
+
+src/common.o: src/common.cpp.o
+
+.PHONY : src/common.o
+
+# target to build an object file
+src/common.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/common.cpp.o
+.PHONY : src/common.cpp.o
+
+src/common.i: src/common.cpp.i
+
+.PHONY : src/common.i
+
+# target to preprocess a source file
+src/common.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/common.cpp.i
+.PHONY : src/common.cpp.i
+
+src/common.s: src/common.cpp.s
+
+.PHONY : src/common.s
+
+# target to generate assembly for a file
+src/common.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/common.cpp.s
+.PHONY : src/common.cpp.s
 
 src/glad.o: src/glad.c.o
 
@@ -696,12 +777,21 @@ help:
 	@echo "... empty"
 	@echo "... tearing"
 	@echo "... docs"
+	@echo "... src/Pool.o"
+	@echo "... src/Pool.i"
+	@echo "... src/Pool.s"
 	@echo "... src/ShaderProgram.o"
 	@echo "... src/ShaderProgram.i"
 	@echo "... src/ShaderProgram.s"
+	@echo "... src/Skybox.o"
+	@echo "... src/Skybox.i"
+	@echo "... src/Skybox.s"
 	@echo "... src/WaterShaderProgram.o"
 	@echo "... src/WaterShaderProgram.i"
 	@echo "... src/WaterShaderProgram.s"
+	@echo "... src/common.o"
+	@echo "... src/common.i"
+	@echo "... src/common.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"

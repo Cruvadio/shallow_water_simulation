@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stb_image.h>
 
 #include <glad/glad.h>
 
@@ -69,5 +70,6 @@ static void ThrowExceptionOnGLError(int line, const char *file)
 		throw std::runtime_error(errMsg);
 }
 
+unsigned int loadTexture(char const * path);
 
 #endif

@@ -3,6 +3,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/main.cpp.o"
   "CMakeFiles/main.dir/src/ShaderProgram.cpp.o"
   "CMakeFiles/main.dir/src/WaterShaderProgram.cpp.o"
+  "CMakeFiles/main.dir/src/Skybox.cpp.o"
+  "CMakeFiles/main.dir/src/Pool.cpp.o"
+  "CMakeFiles/main.dir/src/common.cpp.o"
   "main.pdb"
   "main"
 )

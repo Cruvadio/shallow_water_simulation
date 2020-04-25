@@ -59,24 +59,28 @@ void main ()
 
     
 
-    if (i < 0 || i > width - 1 || j < 0 || j > height - 1) 
-        if (Hnext[i + j * width] < 1e-8) 
-                Hnext[i + j * width] = 0.0;
+    if (i <= 0 || i >= width - 1 || j <= 0 || j >= height - 1)
+    {
+        Hnext[i + j * width] = 0.;
+        return;
+    }
 
 
     //outputPositions[i + j * width].z = 0.;
     //outputPositions[i + j * width].x = (0.5 - float(width - i)/float(width)) * 2.;
     //outputPositions[i + j * width].y = (0.5 - float(j)/float(height)) * 2.;
-    outputPositions[i + j * width].z = Hcurr[i + j * width];
+    outputPositions[i + j * (width - 1)].z = Hcurr[i + j * width];
     outputNormals[i + j * width].x = Hcurr[i - 1 + j * width] - Hcurr[i + 1 + j * width];
     outputNormals[i + j * width].y = Hcurr[i + (j-1) * width] - Hcurr[i + (j+1) * width];
 
-#define omega 1.985f  
+#define omega 1.995f  
     
     Hnext[i + j * width] = ((1 - omega) * Hprev[i + j * width] + omega *
                             (Hcurr[i - 1 + j * width] +
                              Hcurr[i + 1 + j * width] +
                              Hcurr[i + (j + 1) * width] +
                              Hcurr[i + (j - 1) * width]) * 0.25);
-    if (Hnext[i + j * width] < 1e-8) Hnext[i + j * width] = 0.0;
+    //if (Hnext[i + j * width] < 1e-8) Hnext[i + j * width] = 0.0;
+
+
 }

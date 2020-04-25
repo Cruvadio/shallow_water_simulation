@@ -2,6 +2,8 @@
 #include "common.h"
 #include "ShaderProgram.h"
 #include "WaterComputeShaderProgram.h"
+#include "Skybox.h"
+#include "Pool.h"
 
 //External dependencies
 #define GLFW_DLL
@@ -17,13 +19,15 @@
 
 using namespace glm;
 static const GLsizei WIDTH = 640, HEIGHT = 480; //размеры окна
-static const GLint WATER_SIZE = 64;
+static const GLint WATER_SIZE = 128;
 unsigned int normalMap, texCoords;
 unsigned int Hcurr, Hnext, Hprev;
 unsigned int textureID;
 unsigned int framebuffer;
 unsigned int indexbuffer;
 
+vec3 lightColor = vec3(1.0);
+vec3 lightPos = vec3(2.0, 2.2, 1.0);
 
 unsigned int quadVAO, quadVBO;
 unsigned int VAO, VBO;
@@ -59,7 +63,7 @@ bool firstMouse = true;
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
-bool allow_drop = true;
+bool allow_simulation = true;
 
 int initGL()
 {
@@ -124,6 +128,17 @@ int main(int argc, char** argv)
 	shaders[GL_VERTEX_SHADER]   = "shaders/pool.vs";
 	shaders[GL_FRAGMENT_SHADER] = "shaders/pool.fs";
 	ShaderProgram waterProgram(shaders); GL_CHECK_ERRORS;
+	waterProgram.StartUseShader();
+	waterProgram.SetUniform("skybox", 0);GL_CHECK_ERRORS;
+	waterProgram.SetUniform("wallTexture", 1);GL_CHECK_ERRORS;
+	waterProgram.StopUseShader();
+	shaders[GL_VERTEX_SHADER]   = "shaders/skybox.vs";
+	shaders[GL_FRAGMENT_SHADER] = "shaders/skybox.fs";
+	ShaderProgram skyboxShader(shaders); GL_CHECK_ERRORS;
+
+	shaders[GL_VERTEX_SHADER]   = "shaders/box.vs";
+	shaders[GL_FRAGMENT_SHADER] = "shaders/box.fs";
+	ShaderProgram poolShader(shaders);
 	//shaders[GL_VERTEX_SHADER] = "shaders/r2vb.vs";
 	//shaders[GL_FRAGMENT_SHADER] = "shaders/r2vb.fs";
 	//ShaderProgram r2vbProgram(shaders); GL_CHECK_ERRORS;
@@ -131,6 +146,28 @@ int main(int argc, char** argv)
 	WaterComputeShaderProgram calculatingProgram(compute, WATER_SIZE, WATER_SIZE, 16, 16);
 	
 	compute[GL_COMPUTE_SHADER] = "shaders/dropShader.comp"; GL_CHECK_ERRORS;
+
+	// loads a cubemap texture from 6 individual texture faces
+// order:
+// +X (right)
+// -X (left)
+// +Y (top)
+// -Y (bottom)
+// +Z (front) 
+// -Z (back)
+// -------------------------------------------------------
+
+	std::vector<std::string> textures{
+		"textures/posx.jpg",
+		"textures/negx.jpg",
+		"textures/posy.jpg",
+		"textures/negy.jpg",
+		"textures/posz.jpg",
+		"textures/negz.jpg",
+	};
+
+	Pool pool(glm::translate(mat4(1.0), vec3(0., 0.5, 0.)), poolShader, "textures/grunge-texture.jpg");
+	Skybox skybox(textures, skyboxShader);
 	//VBO = calculatingProgram.returnVertices();
 	/*
 	shaders[GL_FRAGMENT_SHADER] = "shaders/heights.fs";
@@ -145,13 +182,13 @@ int main(int argc, char** argv)
   GLuint g_vertexArrayObject;
   unsigned int EBO;
 
-	float vertices[] = {
+	/*float vertices[] = {
     // positions          
      0.5f,  0.5f, 0.0f,   
      0.5f, -0.5f, 0.0f,   
     -0.5f, -0.5f, 0.0f,   
     -0.5f,  0.5f, 0.0f 
-	};
+	};*/
 
 	float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
         // positions   // texCoords
@@ -167,7 +204,7 @@ int main(int argc, char** argv)
         0, 1, 3, // first triangle
         1, 2, 3  // second triangle
     };
-	VBO = createPBO(sizeof(Vertex) * WATER_SIZE * WATER_SIZE);
+	//VBO = createPBO(sizeof(Vertex) * WATER_SIZE * WATER_SIZE);
     GLuint vertexLocation = 0; // simple layout, assume have only positions at location = 0
 	
 	glGenVertexArrays(1, &VAO);   GL_CHECK_ERRORS;
@@ -205,8 +242,10 @@ int main(int argc, char** argv)
 	
 	//initFrameBuffer(WATER_SIZE, WATER_SIZE);
 	createIndexBuffer(WATER_SIZE, WATER_SIZE);
-  
-	model = rotate(model, radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
+	mat4 rot = rotate(model, radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
+	mat4 tr = translate(model, vec3(0.0001, -0.05, -0.0001));
+	//mat4 sc = scale(model, vec3(0.9999, 0.9999, 1.0));
+	model = tr * rot * model;
 	view = translate(view, vec3(0,0,-2));
 	projection = perspective(radians(camera.Zoom), (float)WIDTH/(float)HEIGHT, 0.1f, 100.f);
 	//цикл обработки сообщений и отрисовки сцены каждый кадр
@@ -226,13 +265,19 @@ int main(int argc, char** argv)
     // очистка и заполнение экрана цветом
 
 		//renderToVBO(r2vbProgram, WATER_SIZE, WATER_SIZE);
-		calculateHeights(calculatingProgram, WATER_SIZE, WATER_SIZE);
+		if (allow_simulation)
+			calculateHeights(calculatingProgram, WATER_SIZE, WATER_SIZE);
     //
     	glViewport  (0, 0, WIDTH, HEIGHT);
     	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     	glClear     (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
+		
+		
+		pool.drawPool(projection, view, lightPos, camera.Position, lightColor);
+		skybox.bindTexture();
+		pool.bindTexture(GL_TEXTURE1);
 		drawWater(waterProgram,  WATER_SIZE, WATER_SIZE);
+		skybox.drawSkybox(projection, view);
 
 		glfwSwapBuffers(window); 
 	}
@@ -250,6 +295,9 @@ int main(int argc, char** argv)
 
 void processInput(GLFWwindow *window)
 {
+	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)
+		allow_simulation = !allow_simulation;
+
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
@@ -310,54 +358,14 @@ GLuint createTexture (int width, int height)
 	return textureID;
 }
 
-GLuint createPBO (int size)
-{
-	GLuint result;
-	glGenBuffers(1, &result);
-  	glBindBuffer(GL_PIXEL_PACK_BUFFER, result);
-  	glBufferData(GL_PIXEL_PACK_BUFFER, size, NULL, GL_DYNAMIC_DRAW);
-	return result;
-}
-
-void initFrameBuffer(int width, int height)
-{
-	GLuint PBOsize = width * height * 4 * sizeof(float);
-
-	pboIdv = createPBO(PBOsize);
-	pboIdn = createPBO(PBOsize);
-	pboIdt = createPBO(PBOsize);
-	// Making framebuffer
-    glGenFramebuffers(1, &framebuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-    // create a color attachment texture
-
-    Hnext = createTexture(width, height);
-	Hprev = createTexture(width, height);
-	Hcurr = createTexture(width, height);
-	textureID = createTexture(width, height);
-	normalMap = createTexture(width, height);
-	texCoords = createTexture(width, height);
-	
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                            GL_TEXTURE_2D, textureID, 0);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1,
-                            GL_TEXTURE_2D, normalMap, 0);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2,
-                            GL_TEXTURE_2D, texCoords, 0);
-
-    // now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
-    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-}
 
 void	createIndexBuffer (int width, int height)
 {
-	data = (int *) malloc ( (width - 2)*(height - 2)*6*sizeof (int) );
+	data = (int *) malloc ( (width - 1)*(height - 1)*6*sizeof (int) );
 	int	  k    = 0;
 	
-	for ( int i = 1; i < width - 2; i++ )
-		for ( int j = 1; j < height - 2; j++ )
+	for ( int i = 1; i < width - 1; i++ )
+		for ( int j = 1; j < height - 1; j++ )
 		{
 			data [k]   = i + width*j;				// first triangle (i,j)-(i+1,j) - (i,j+1)
 			data [k+1] = i + width*j + 1;
@@ -376,75 +384,6 @@ void	createIndexBuffer (int width, int height)
 	//free ( data );
 }
 
-void renderToVBO (const ShaderProgram& shaderProgram, int width, int height)
-{
-	GLenum buffers[] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
-
-	shaderProgram.StartUseShader(); GL_CHECK_ERRORS;
-	glViewport  (0, 0, width, height);
-	//mat4 scal(1.0);
-	//scal = scale(scal, vec3((float)height/(float)HEIGHT,(float)width/(float)WIDTH,  1.0));
-	//shaderProgram.SetUniform("texScale", scal);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer); GL_CHECK_ERRORS;
-	glDrawBuffers(2, buffers); GL_CHECK_ERRORS;
-	glBindVertexArray(quadVAO); GL_CHECK_ERRORS;
-    glDrawArrays(GL_TRIANGLES, 0, 6); GL_CHECK_ERRORS;
-	glBindVertexArray(0); GL_CHECK_ERRORS;
-	shaderProgram.StopUseShader(); GL_CHECK_ERRORS;
-	
-	// Read verticies
-	glBindBuffer(GL_PIXEL_PACK_BUFFER, pboIdv); GL_CHECK_ERRORS;
-	glReadBuffer(GL_COLOR_ATTACHMENT0); GL_CHECK_ERRORS;
-	glReadPixels( 0, 0, width, height, GL_RGBA, GL_FLOAT, NULL ); GL_CHECK_ERRORS;
-	glBindBuffer(GL_PIXEL_PACK_BUFFER, 0); GL_CHECK_ERRORS;
-	//Read normals
-	glBindBuffer(GL_PIXEL_PACK_BUFFER, pboIdn); GL_CHECK_ERRORS;
-	glReadBuffer(GL_COLOR_ATTACHMENT1); GL_CHECK_ERRORS;
-	glReadPixels( 0, 0, width, height, GL_RGBA, GL_FLOAT, NULL ); GL_CHECK_ERRORS;
-	glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
-	//Read texCoords
-	glBindBuffer(GL_PIXEL_PACK_BUFFER, pboIdt);  GL_CHECK_ERRORS;
-	glReadBuffer(GL_COLOR_ATTACHMENT2); GL_CHECK_ERRORS;
-	glReadPixels( 0, 0, width, height, GL_RGBA, GL_FLOAT, NULL ); GL_CHECK_ERRORS;
-	glBindBuffer(GL_PIXEL_PACK_BUFFER, 0); GL_CHECK_ERRORS;
-	glBindFramebuffer(GL_FRAMEBUFFER, 0); GL_CHECK_ERRORS;
-
-	/*glBindBuffer(GL_COPY_WRITE_BUFFER, VBO);
-	glBindBuffer(GL_COPY_READ_BUFFER, pboIdv);
-	glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, 4 * sizeof(float) * width * height);  GL_CHECK_ERRORS;
-
-	glBindBuffer(GL_COPY_READ_BUFFER, pboIdn);
-	glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 4 * sizeof(float) * width * height, 4 * sizeof(float) * width * height);
-
-	glBindBuffer(GL_COPY_READ_BUFFER, pboIdt);
-	glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 2 * 4 * sizeof(float) * width * height, 4 * sizeof(float) * width * height);
-	glBindBuffer(GL_COPY_READ_BUFFER, 0);
-	glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
-
-	
-	glBindBuffer(GL_ARRAY_BUFFER, VBO); GL_CHECK_ERRORS;*/
-
-	glBindVertexArray(VAO);  GL_CHECK_ERRORS;
-
-	glBindBuffer(GL_ARRAY_BUFFER, pboIdv);  GL_CHECK_ERRORS;
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);  GL_CHECK_ERRORS;
-	GLintptr vertex_texcoord_offset = /*2 * 4 * width * height*/0 * sizeof(float);
-	GLintptr vertex_normal_offset = /*4 * width * height*/0 * sizeof(float);
-	GLintptr vertex_position_offset = 0 * sizeof(float);
-	glEnableVertexAttribArray(0);  GL_CHECK_ERRORS;
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (GLvoid*)vertex_position_offset);  GL_CHECK_ERRORS;
-
-	glBindBuffer(GL_ARRAY_BUFFER, pboIdn); GL_CHECK_ERRORS;
-    glEnableVertexAttribArray(1); GL_CHECK_ERRORS;
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (GLvoid*)vertex_normal_offset); GL_CHECK_ERRORS;
-
-	glBindBuffer(GL_ARRAY_BUFFER, pboIdt); GL_CHECK_ERRORS;
-	glEnableVertexAttribArray(2); GL_CHECK_ERRORS;
-	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (GLvoid*)vertex_texcoord_offset); GL_CHECK_ERRORS;
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0); GL_CHECK_ERRORS;
-	glBindVertexArray(0); GL_CHECK_ERRORS;
-}
 
 void calculateHeights (WaterComputeShaderProgram& shader, int width, int height)
 {
@@ -508,11 +447,11 @@ void drawWater (const ShaderProgram& waterShader, int width, int height)
 	waterShader.SetUniform("view", view); GL_CHECK_ERRORS;
 	waterShader.SetUniform("projection", projection); GL_CHECK_ERRORS;
 	waterShader.SetUniform("model", model); GL_CHECK_ERRORS;
-	waterShader.SetUniform("lightPos", vec3(2.2, 2.0, 0.0)); GL_CHECK_ERRORS;
-	waterShader.SetUniform("lightColor", vec3(1.0)); GL_CHECK_ERRORS;
+	waterShader.SetUniform("lightPos", lightPos); GL_CHECK_ERRORS;
+	waterShader.SetUniform("lightColor", lightColor); GL_CHECK_ERRORS;
 	waterShader.SetUniform("cameraPos", camera.Position); GL_CHECK_ERRORS;
 	glBindVertexArray(VAO); GL_CHECK_ERRORS;
-	glDrawElements(GL_TRIANGLES, (width-3)*(height-3)*6, GL_UNSIGNED_INT, NULL); GL_CHECK_ERRORS;
+	glDrawElements(GL_TRIANGLES, (width-2)*(height-2)*6, GL_UNSIGNED_INT, NULL); GL_CHECK_ERRORS;
 	//glDrawArrays(GL_POINTS, 0 , (width) * (height));
 	glBindVertexArray(0); GL_CHECK_ERRORS;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -528,7 +467,7 @@ void mousebutton_callback(GLFWwindow* window, int button, int action, int mods)
 		compute[GL_COMPUTE_SHADER] = "shaders/dropShader.comp";
 		ShaderProgram dropShader(compute);
 		dropShader.StartUseShader();
-		ivec2 rand_vec = ivec2(rand() % WATER_SIZE, rand() % WATER_SIZE);
+		ivec2 rand_vec = ivec2( 1 + rand() % WATER_SIZE, 1 + rand() % WATER_SIZE);
 		dropShader.SetUniform("rand_vec", rand_vec); GL_CHECK_ERRORS;
 		dropShader.SetUniform("width", WATER_SIZE); GL_CHECK_ERRORS;
 		dropShader.SetUniform("strength", (float)(rand() % 150)/(float)10000); GL_CHECK_ERRORS;

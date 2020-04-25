@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/cruvadio/shallow_water_simulation/build
 CMakeFiles/main.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=53,54,55,56,57 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=52,53,54,55,56,57,58 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -199,7 +199,7 @@ external/glfw-3.2.1/src/preinstall:
 external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) -f external/glfw-3.2.1/src/CMakeFiles/glfw.dir/build.make external/glfw-3.2.1/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/src/CMakeFiles/glfw.dir/build.make external/glfw-3.2.1/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=24,25,26,27,28,29,30,31,32,33,34,35,36,37 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=23,24,25,26,27,28,29,30,31,32,33,34,35,36 "Built target glfw"
 .PHONY : external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 
 # Include target in all.
@@ -303,7 +303,7 @@ clean: external/glfw-3.2.1/examples/CMakeFiles/wave.dir/clean
 external/glfw-3.2.1/examples/CMakeFiles/gears.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/gears.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/gears.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/gears.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/gears.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=21,22,23 "Built target gears"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=21,22 "Built target gears"
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/gears.dir/all
 
 # Include target in all.
@@ -313,7 +313,7 @@ all: external/glfw-3.2.1/examples/CMakeFiles/gears.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/examples/CMakeFiles/gears.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/examples/CMakeFiles/gears.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/gears.dir/rule
@@ -377,7 +377,7 @@ clean: external/glfw-3.2.1/examples/CMakeFiles/boing.dir/clean
 external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=42,43 "Built target heightmap"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=41,42 "Built target heightmap"
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/all
 
 # Include target in all.
@@ -414,7 +414,7 @@ clean: external/glfw-3.2.1/examples/CMakeFiles/heightmap.dir/clean
 external/glfw-3.2.1/examples/CMakeFiles/particles.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/particles.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/particles.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/particles.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/particles.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=65,66,67,68 "Built target particles"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=66,67,68,69 "Built target particles"
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/particles.dir/all
 
 # Include target in all.
@@ -451,7 +451,7 @@ clean: external/glfw-3.2.1/examples/CMakeFiles/particles.dir/clean
 external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=77,78,79 "Built target splitview"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=78,79,80 "Built target splitview"
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/all
 
 # Include target in all.
@@ -488,7 +488,7 @@ clean: external/glfw-3.2.1/examples/CMakeFiles/splitview.dir/clean
 external/glfw-3.2.1/examples/CMakeFiles/simple.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/simple.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/simple.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/examples/CMakeFiles/simple.dir/build.make external/glfw-3.2.1/examples/CMakeFiles/simple.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=75,76 "Built target simple"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=75,76,77 "Built target simple"
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/simple.dir/all
 
 # Include target in all.
@@ -498,7 +498,7 @@ all: external/glfw-3.2.1/examples/CMakeFiles/simple.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/examples/CMakeFiles/simple.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/examples/CMakeFiles/simple.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/examples/CMakeFiles/simple.dir/rule
@@ -579,7 +579,7 @@ external/glfw-3.2.1/tests/preinstall:
 external/glfw-3.2.1/tests/CMakeFiles/title.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/title.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/title.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/title.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/title.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=90,91 "Built target title"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=90,91,92 "Built target title"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/title.dir/all
 
 # Include target in all.
@@ -589,7 +589,7 @@ all: external/glfw-3.2.1/tests/CMakeFiles/title.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/tests/CMakeFiles/title.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/tests/CMakeFiles/title.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/title.dir/rule
@@ -653,7 +653,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/cursor.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=61,62,63,64 "Built target msaa"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=62,63,64,65 "Built target msaa"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/all
 
 # Include target in all.
@@ -690,7 +690,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/msaa.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/glfwinfo.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/glfwinfo.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/glfwinfo.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/glfwinfo.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/glfwinfo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=38,39,40,41 "Built target glfwinfo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=37,38,39,40 "Built target glfwinfo"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/glfwinfo.dir/all
 
 # Include target in all.
@@ -801,7 +801,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/clipboard.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=58,59,60 "Built target monitors"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=59,60,61 "Built target monitors"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/all
 
 # Include target in all.
@@ -838,7 +838,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/monitors.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=47,48,49,50 "Built target iconify"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=46,47,48 "Built target iconify"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/all
 
 # Include target in all.
@@ -848,7 +848,7 @@ all: external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/iconify.dir/rule
@@ -912,7 +912,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/gamma.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=92,93 "Built target vulkan"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=93 "Built target vulkan"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/all
 
 # Include target in all.
@@ -922,7 +922,7 @@ all: external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/vulkan.dir/rule
@@ -986,7 +986,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/events.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/icon.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/icon.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/icon.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/icon.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/icon.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=44,45,46 "Built target icon"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=43,44,45 "Built target icon"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/icon.dir/all
 
 # Include target in all.
@@ -1023,7 +1023,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/icon.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=72,73,74 "Built target sharing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=73,74 "Built target sharing"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/all
 
 # Include target in all.
@@ -1033,7 +1033,7 @@ all: external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/rule
@@ -1060,7 +1060,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/sharing.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=51,52 "Built target joysticks"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=49,50,51 "Built target joysticks"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/all
 
 # Include target in all.
@@ -1070,7 +1070,7 @@ all: external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/rule
@@ -1097,7 +1097,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/joysticks.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/reopen.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/reopen.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/reopen.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/reopen.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/reopen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=69,70,71 "Built target reopen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=70,71,72 "Built target reopen"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/reopen.dir/all
 
 # Include target in all.
@@ -1245,7 +1245,7 @@ clean: external/glfw-3.2.1/tests/CMakeFiles/empty.dir/clean
 external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/all: external/glfw-3.2.1/src/CMakeFiles/glfw.dir/all
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/depend
 	$(MAKE) -f external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/build.make external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=80,81,82,83 "Built target tearing"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cruvadio/shallow_water_simulation/build/CMakeFiles --progress-num=81,82,83 "Built target tearing"
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/all
 
 # Include target in all.
@@ -1255,7 +1255,7 @@ all: external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/all
 
 # Build rule for subdir invocation for target.
 external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cruvadio/shallow_water_simulation/build/CMakeFiles 0
 .PHONY : external/glfw-3.2.1/tests/CMakeFiles/tearing.dir/rule

@@ -7,11 +7,11 @@ C_FLAGS = -g   -Wnarrowing
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include 
+C_INCLUDES = -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/external -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include 
 
 CXX_FLAGS = -g   -Wnarrowing -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include 
+CXX_INCLUDES = -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/external -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include 
 

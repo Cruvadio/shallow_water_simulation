@@ -45,7 +45,7 @@ void WaterComputeShaderProgram::initializeBuffer()
 			positions[i + width * j].w = 1.0;
 			normals[i + width * j].x = 0;
 			normals[i + width * j].y = 0;
-			normals[i + width * j].z = -4.0/(float) width;
+			normals[i + width * j].z = -10.0/(float) width;
 			normals[i + width * j].w = 1.0;
 			texCoords[i + width * j] = vec4(0.0);
 		} 
@@ -118,7 +118,7 @@ void WaterComputeShaderProgram::bindTextureCoords() const
 WaterComputeShaderProgram::~WaterComputeShaderProgram()
 {
 	//glDeleteBuffers(1, &SSBO_V);
-	glDeleteBuffers(1, &SSBO_C);
-	glDeleteBuffers(1, &SSBO_B);
-	glDeleteBuffers(1, &SSBO_A);
+	//glDeleteBuffers(1, &SSBO_C);
+	//glDeleteBuffers(1, &SSBO_B);
+	//glDeleteBuffers(1, &SSBO_A);
 }

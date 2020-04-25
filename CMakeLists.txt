@@ -11,11 +11,15 @@ set(SOURCE_FILES
     include/ShaderProgram.h
     src/ShaderProgram.cpp
     src/WaterShaderProgram.cpp
+    src/Skybox.cpp
+    src/Pool.cpp
+    src/common.cpp
     )
 
 set(ADDITIONAL_INCLUDE_DIRS
         dependencies/include/GLAD
         external/glm-0.9.7.1/
+        external/
         include/
         )
 set(ADDITIONAL_LIBRARY_DIRS
