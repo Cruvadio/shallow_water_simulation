@@ -627,6 +627,33 @@ src/Skybox.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Skybox.cpp.s
 .PHONY : src/Skybox.cpp.s
 
+src/Sphere.o: src/Sphere.cpp.o
+
+.PHONY : src/Sphere.o
+
+# target to build an object file
+src/Sphere.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Sphere.cpp.o
+.PHONY : src/Sphere.cpp.o
+
+src/Sphere.i: src/Sphere.cpp.i
+
+.PHONY : src/Sphere.i
+
+# target to preprocess a source file
+src/Sphere.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Sphere.cpp.i
+.PHONY : src/Sphere.cpp.i
+
+src/Sphere.s: src/Sphere.cpp.s
+
+.PHONY : src/Sphere.s
+
+# target to generate assembly for a file
+src/Sphere.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/Sphere.cpp.s
+.PHONY : src/Sphere.cpp.s
+
 src/WaterShaderProgram.o: src/WaterShaderProgram.cpp.o
 
 .PHONY : src/WaterShaderProgram.o
@@ -786,6 +813,9 @@ help:
 	@echo "... src/Skybox.o"
 	@echo "... src/Skybox.i"
 	@echo "... src/Skybox.s"
+	@echo "... src/Sphere.o"
+	@echo "... src/Sphere.i"
+	@echo "... src/Sphere.s"
 	@echo "... src/WaterShaderProgram.o"
 	@echo "... src/WaterShaderProgram.i"
 	@echo "... src/WaterShaderProgram.s"

@@ -4,6 +4,7 @@
 #include "WaterComputeShaderProgram.h"
 #include "Skybox.h"
 #include "Pool.h"
+#include "Sphere.h"
 
 //External dependencies
 #define GLFW_DLL
@@ -16,25 +17,21 @@
 #include <random>
 
 
+const float sphereRadius = 0.4;
+const vec3 sphereCenter = vec3(-0.2, -0.5999, -0.2);
+ShaderProgram drops;
+
 
 using namespace glm;
-static const GLsizei WIDTH = 640, HEIGHT = 480; //размеры окна
-static const GLint WATER_SIZE = 128;
-unsigned int normalMap, texCoords;
-unsigned int Hcurr, Hnext, Hprev;
-unsigned int textureID;
-unsigned int framebuffer;
+static const GLsizei WIDTH = 1024, HEIGHT = 735; //размеры окна
+static const GLint WATER_SIZE = 160;
+static const GLint NUM_DROPS = 10;
 unsigned int indexbuffer;
 
 vec3 lightColor = vec3(1.0);
 vec3 lightPos = vec3(2.0, 2.2, 1.0);
 
-unsigned int quadVAO, quadVBO;
-unsigned int VAO, VBO;
-
-GLuint pboIdv;
-GLuint pboIdn;
-GLuint pboIdt;
+unsigned int VAO;
 
 int * data;
 
@@ -53,17 +50,21 @@ GLuint createPBO (int size);
 void renderToVBO (const ShaderProgram& shaderProgram, int width, int height);
 void initFrameBuffer(int width, int height);
 void drawWater (const ShaderProgram& waterShader, int width, int height);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void makeDrop();
+void makeDrop(vec2 clicked_vec, int width, int height);
 
 Camera camera(glm::vec3(0.0f, 0.5f, 1.5f));
 float lastX = WIDTH / 2.0f;
 float lastY = HEIGHT / 2.0f;
 bool firstMouse = true;
 
-// timing
-float deltaTime = 0.0f;	// time between current frame and last frame
+
+float deltaTime = 0.0f;	
 float lastFrame = 0.0f;
 
 bool allow_simulation = true;
+bool wireframe = false;
 
 int initGL()
 {
@@ -71,7 +72,6 @@ int initGL()
 	#ifndef NDEBUG
 	chdir("..");
 	#endif
-	//грузим функции opengl через glad
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize OpenGL context" << std::endl;
@@ -91,9 +91,8 @@ int main(int argc, char** argv)
 	if(!glfwInit())
     return -1;
 
-	//запрашиваем контекст opengl версии 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4); 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5); 
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE); 
 
@@ -107,6 +106,7 @@ int main(int argc, char** argv)
 	glfwMakeContextCurrent(window); 
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetMouseButtonCallback(window, mousebutton_callback);
+	glfwSetKeyCallback(window,key_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -115,14 +115,11 @@ int main(int argc, char** argv)
 		return -1;
 
 	
-	
-  //Reset any OpenGL errors which could be present for some reason
+
 	GLenum gl_error = glGetError();
 	while (gl_error != GL_NO_ERROR)
 		gl_error = glGetError();
 
-	//создание шейдерной программы из двух файлов с исходниками шейдеров
-	//используется класс-обертка ShaderProgram
 	std::unordered_map<GLenum, std::string> shaders;
 	std::unordered_map<GLenum, std::string> compute;
 	shaders[GL_VERTEX_SHADER]   = "shaders/pool.vs";
@@ -131,6 +128,8 @@ int main(int argc, char** argv)
 	waterProgram.StartUseShader();
 	waterProgram.SetUniform("skybox", 0);GL_CHECK_ERRORS;
 	waterProgram.SetUniform("wallTexture", 1);GL_CHECK_ERRORS;
+	waterProgram.SetUniform("normalMap", 2);GL_CHECK_ERRORS;
+	//waterProgram.SetUniform("heightMap", 3);GL_CHECK_ERRORS;
 	waterProgram.StopUseShader();
 	shaders[GL_VERTEX_SHADER]   = "shaders/skybox.vs";
 	shaders[GL_FRAGMENT_SHADER] = "shaders/skybox.fs";
@@ -138,16 +137,19 @@ int main(int argc, char** argv)
 
 	shaders[GL_VERTEX_SHADER]   = "shaders/box.vs";
 	shaders[GL_FRAGMENT_SHADER] = "shaders/box.fs";
-	ShaderProgram poolShader(shaders);
-	//shaders[GL_VERTEX_SHADER] = "shaders/r2vb.vs";
-	//shaders[GL_FRAGMENT_SHADER] = "shaders/r2vb.fs";
-	//ShaderProgram r2vbProgram(shaders); GL_CHECK_ERRORS;
-	compute[GL_COMPUTE_SHADER] = "shaders/calculatingHeights.comp"; GL_CHECK_ERRORS;
+	ShaderProgram poolShader(shaders); GL_CHECK_ERRORS;
+
+	shaders[GL_VERTEX_SHADER]   = "shaders/sphere.vs";
+	shaders[GL_FRAGMENT_SHADER] = "shaders/sphere.fs";
+	ShaderProgram sphereShader(shaders); GL_CHECK_ERRORS;
+
+	compute[GL_COMPUTE_SHADER] = "shaders/calculatingHeights.comp"; 
 	WaterComputeShaderProgram calculatingProgram(compute, WATER_SIZE, WATER_SIZE, 16, 16);
 	
-	compute[GL_COMPUTE_SHADER] = "shaders/dropShader.comp"; GL_CHECK_ERRORS;
+	compute[GL_COMPUTE_SHADER] = "shaders/dropShader.comp"; 
+	ShaderProgram dropShader(compute);
+	drops = dropShader;
 
-	// loads a cubemap texture from 6 individual texture faces
 // order:
 // +X (right)
 // -X (left)
@@ -156,7 +158,7 @@ int main(int argc, char** argv)
 // +Z (front) 
 // -Z (back)
 // -------------------------------------------------------
-
+	glGenVertexArrays(1, &VAO);
 	std::vector<std::string> textures{
 		"textures/posx.jpg",
 		"textures/negx.jpg",
@@ -165,89 +167,21 @@ int main(int argc, char** argv)
 		"textures/posz.jpg",
 		"textures/negz.jpg",
 	};
-
-	Pool pool(glm::translate(mat4(1.0), vec3(0., 0.5, 0.)), poolShader, "textures/grunge-texture.jpg");
+	mat4 mat = glm::scale(mat4(1.0), vec3(1., 7./12., 1.));
+	mat = translate(mat, vec3(0, -0.75, 0));
+	Pool pool(mat, poolShader, "textures/Stones/Pebbles_017_baseColor.jpg", "textures/Stones/Pebbles_017_normal.jpg");
 	Skybox skybox(textures, skyboxShader);
-	//VBO = calculatingProgram.returnVertices();
-	/*
-	shaders[GL_FRAGMENT_SHADER] = "shaders/heights.fs";
-	ShaderProgram heightProgram(shaders); GL_CHECK_ERRORS;
-	shaders[GL_FRAGMENT_SHADER] = "shaders/normals.fs";
-	ShaderProgram normalProgram(shaders); GL_CHECK_ERRORS;*/
+	Sphere sphere("models/sphere.obj", sphereShader, sphereRadius, sphereCenter);
 
-  glfwSwapInterval(1); // force 60 frames per second
-  
-  //Создаем и загружаем геометрию поверхности
-  //
-  GLuint g_vertexArrayObject;
-  unsigned int EBO;
-
-	/*float vertices[] = {
-    // positions          
-     0.5f,  0.5f, 0.0f,   
-     0.5f, -0.5f, 0.0f,   
-    -0.5f, -0.5f, 0.0f,   
-    -0.5f,  0.5f, 0.0f 
-	};*/
-
-	float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
-        // positions   // texCoords
-        -1.0f,  1.0f,  0.0f, 1.0f,
-        -1.0f, -1.0f,  0.0f, 0.0f,
-         1.0f, -1.0f,  1.0f, 0.0f,
-
-        -1.0f,  1.0f,  0.0f, 1.0f,
-         1.0f, -1.0f,  1.0f, 0.0f,
-         1.0f,  1.0f,  1.0f, 1.0f
-    };
-	unsigned int indices[] = {  
-        0, 1, 3, // first triangle
-        1, 2, 3  // second triangle
-    };
-	//VBO = createPBO(sizeof(Vertex) * WATER_SIZE * WATER_SIZE);
-    GLuint vertexLocation = 0; // simple layout, assume have only positions at location = 0
-	
-	glGenVertexArrays(1, &VAO);   GL_CHECK_ERRORS;
-
-	// Water verticies
-	/*
-    
-	                                                     GL_CHECK_ERRORS;
-    glBindBuffer(GL_ARRAY_BUFFER,	VBO);                                           GL_CHECK_ERRORS;
-    glBufferData(GL_ARRAY_BUFFER,sizeof(vertices), (GLfloat*)vertices, GL_STATIC_DRAW); 		   GL_CHECK_ERRORS;
-	
-    glGenVertexArrays(1, &g_vertexArrayObject);                                                    GL_CHECK_ERRORS;
-    glBindVertexArray(g_vertexArrayObject);     
-	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); GL_CHECK_ERRORS;
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), (GLfloat*)indices, GL_STATIC_DRAW); GL_CHECK_ERRORS;
-	
-	*/
-	
-
-	 // screen quad VAO
-    glGenVertexArrays(1, &quadVAO); GL_CHECK_ERRORS;
-    glGenBuffers(1, &quadVBO); GL_CHECK_ERRORS;
-    glBindVertexArray(quadVAO); GL_CHECK_ERRORS;
-    glBindBuffer(GL_ARRAY_BUFFER, quadVBO); GL_CHECK_ERRORS;
-    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW); GL_CHECK_ERRORS;
-    glEnableVertexAttribArray(0); GL_CHECK_ERRORS;
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); GL_CHECK_ERRORS;
-    glEnableVertexAttribArray(1); GL_CHECK_ERRORS;
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); GL_CHECK_ERRORS;
-	glBindVertexArray(0);
-	                                                   
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); GL_CHECK_ERRORS;
-	glEnable(GL_PROGRAM_POINT_SIZE);  
-	
-	//initFrameBuffer(WATER_SIZE, WATER_SIZE);
+  	glfwSwapInterval(1); // force 60 frames per second
 	createIndexBuffer(WATER_SIZE, WATER_SIZE);
 	mat4 rot = rotate(model, radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
-	mat4 tr = translate(model, vec3(0.0001, -0.05, -0.0001));
-	//mat4 sc = scale(model, vec3(0.9999, 0.9999, 1.0));
-	model = tr * rot * model;
+	model = rot * model;
 	view = translate(view, vec3(0,0,-2));
 	projection = perspective(radians(camera.Zoom), (float)WIDTH/(float)HEIGHT, 0.1f, 100.f);
+
+	for(int i = 0; i < NUM_DROPS; i++)
+		makeDrop();
 	//цикл обработки сообщений и отрисовки сцены каждый кадр
 	while (!glfwWindowShouldClose(window))
 	{
@@ -255,25 +189,24 @@ int main(int argc, char** argv)
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);               GL_CHECK_ERRORS;
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
+
 		processInput(window);
 		glfwPollEvents();
 
-		//очищаем экран каждый кадр
-		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);               GL_CHECK_ERRORS;
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
-	
-    // очистка и заполнение экрана цветом
 
-		//renderToVBO(r2vbProgram, WATER_SIZE, WATER_SIZE);
 		if (allow_simulation)
 			calculateHeights(calculatingProgram, WATER_SIZE, WATER_SIZE);
-    //
+
     	glViewport  (0, 0, WIDTH, HEIGHT);
     	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     	glClear     (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		view = camera.GetViewMatrix();
+		projection = perspective(radians(camera.Zoom), (float)WIDTH/(float)HEIGHT, 0.1f, 100.f);
 		
-		
-		pool.drawPool(projection, view, lightPos, camera.Position, lightColor);
+		sphere.drawSphere(projection, view, lightPos, camera.Position, WATER_SIZE, WATER_SIZE);
+		pool.drawPool(projection, view, lightPos, camera.Position,sphereCenter, sphereRadius, WATER_SIZE, WATER_SIZE);
 		skybox.bindTexture();
 		pool.bindTexture(GL_TEXTURE1);
 		drawWater(waterProgram,  WATER_SIZE, WATER_SIZE);
@@ -282,12 +215,14 @@ int main(int argc, char** argv)
 		glfwSwapBuffers(window); 
 	}
 
-	//очищаем vbo и vao перед закрытием программы
-  //
+
 	glDeleteVertexArrays(1, &VAO);
-	glDeleteVertexArrays(1, &quadVAO);
-	glDeleteBuffers(1, &quadVBO);
 	glDeleteBuffers(1, &indexbuffer);
+	calculatingProgram.cleanUp();
+	pool.cleanUp();
+	skybox.cleanUp();
+	sphere.cleanUp();
+
 	glfwTerminate();
 	return 0;
 }
@@ -295,12 +230,6 @@ int main(int argc, char** argv)
 
 void processInput(GLFWwindow *window)
 {
-	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)
-		allow_simulation = !allow_simulation;
-
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -336,6 +265,12 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	{
 		firstMouse = true;
 	}
+	/*
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+	{
+		makeDrop(vec2(xpos, ypos), WATER_SIZE, WATER_SIZE);
+	}*/
+	
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
@@ -345,19 +280,37 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
     camera.ProcessMouseScroll(yoffset);
 }
 
-GLuint createTexture (int width, int height)
-{
-	GLuint textureID;
-	glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
 
-	return textureID;
+void mousebutton_callback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		makeDrop();
+	}
 }
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_Q && action == GLFW_PRESS)
+	{
+		wireframe = !wireframe;
+	}
+	else if (key == GLFW_KEY_F5 && action == GLFW_PRESS)
+	{
+		allow_simulation = !allow_simulation;
+	}
+	else if (key == GLFW_KEY_F6 && action == GLFW_PRESS)
+	{
+		allow_simulation = true;
+		for (int i = 0; i < NUM_DROPS; i++)
+			makeDrop();
+	}
+	else if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+	
+
+	
+}
 
 void	createIndexBuffer (int width, int height)
 {
@@ -381,7 +334,7 @@ void	createIndexBuffer (int width, int height)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (width - 2)*(height - 2)*6*sizeof (int), data, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	//free ( data );
+	free ( data );
 }
 
 
@@ -391,30 +344,9 @@ void calculateHeights (WaterComputeShaderProgram& shader, int width, int height)
 	shader.SetUniform("width", width); GL_CHECK_ERRORS;
 	shader.SetUniform("height", height); GL_CHECK_ERRORS;
 	
-	//shader.SetUniform("probability", rand()); GL_CHECK_ERRORS;
 	shader.startComputing(); GL_CHECK_ERRORS;
 	shader.StopUseShader(); GL_CHECK_ERRORS;
-	
-	/*glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO); GL_CHECK_ERRORS;
 
-	void* mapped_data = glMapBufferRange(GL_SHADER_STORAGE_BUFFER, 0, sizeof(Vertex) * width * height, GL_MAP_READ_BIT); GL_CHECK_ERRORS;
-
-	Vertex* vertices = (Vertex *) mapped_data;
-
-	for (int i = 0; i < width; i++)
-		for (int j = 0; j < height; j++)
-		{
-			std::cout << "(" << vertices[i + j*width].position.x << ", " << vertices[i + j*width].position.y << ", " << vertices[i + j*width].position.z << ")\n";
-			std::cout << "(" << vertices[i + j*width].normal.x << ", " << vertices[i + j*width].normal.y << ", " << vertices[i + j*width].normal.z << ")\n";
-		}
-	glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
-	glUnmapBuffer(GL_SHADER_STORAGE_BUFFER); GL_CHECK_ERRORS;
-	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0); GL_CHECK_ERRORS;*/
-
-	//glBindBuffer(GL_COPY_WRITE_BUFFER, VBO); GL_CHECK_ERRORS;
-	//glBindBuffer(GL_COPY_READ_BUFFER, SSBO); GL_CHECK_ERRORS;
-	//glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, sizeof(Vertex) * width * height);  GL_CHECK_ERRORS; 
-	
 	
 	glBindVertexArray(VAO);  GL_CHECK_ERRORS;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);  GL_CHECK_ERRORS;
@@ -440,39 +372,94 @@ void calculateHeights (WaterComputeShaderProgram& shader, int width, int height)
 
 void drawWater (const ShaderProgram& waterShader, int width, int height)
 {
+	if (wireframe)
+		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 	waterShader.StartUseShader(); GL_CHECK_ERRORS;
-	
-	view = camera.GetViewMatrix();
-	projection = perspective(radians(camera.Zoom), (float)WIDTH/(float)HEIGHT, 0.1f, 100.f);
 	waterShader.SetUniform("view", view); GL_CHECK_ERRORS;
 	waterShader.SetUniform("projection", projection); GL_CHECK_ERRORS;
 	waterShader.SetUniform("model", model); GL_CHECK_ERRORS;
 	waterShader.SetUniform("lightPos", lightPos); GL_CHECK_ERRORS;
 	waterShader.SetUniform("lightColor", lightColor); GL_CHECK_ERRORS;
 	waterShader.SetUniform("cameraPos", camera.Position); GL_CHECK_ERRORS;
+	waterShader.SetUniform("sphereRadius", sphereRadius); GL_CHECK_ERRORS;
+	waterShader.SetUniform("sphereCenter", sphereCenter); GL_CHECK_ERRORS;
 	glBindVertexArray(VAO); GL_CHECK_ERRORS;
 	glDrawElements(GL_TRIANGLES, (width-2)*(height-2)*6, GL_UNSIGNED_INT, NULL); GL_CHECK_ERRORS;
-	//glDrawArrays(GL_POINTS, 0 , (width) * (height));
 	glBindVertexArray(0); GL_CHECK_ERRORS;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	waterShader.StopUseShader();
 } 
 
-
-void mousebutton_callback(GLFWwindow* window, int button, int action, int mods)
+void makeDrop()
 {
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	
+	drops.StartUseShader();
+	ivec2 rand_vec = ivec2( 1 + rand() % WATER_SIZE, 1 + rand() % WATER_SIZE);
+	drops.SetUniform("rand_vec", rand_vec); GL_CHECK_ERRORS;
+	drops.SetUniform("width", WATER_SIZE); GL_CHECK_ERRORS;
+	drops.SetUniform("strength", (float)(rand() % 150)/(float)10000); GL_CHECK_ERRORS;
+	glDispatchCompute(1, 1, 1);
+	glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
+	drops.StopUseShader();
+}
+
+
+bool PlaneIntersection(const vec4& plane,const vec3& origin, const vec3& dir, vec3& hit)
+{
+    vec3 N = normalize(vec3(plane));
+    float L = dot(dir,N);
+    if (L == 0) return false;
+    float t0 = -(dot(origin,N)+plane.w)/L;
+    if(t0<=0)return false;
+    hit=origin+dir*t0;
+    if (fabs(hit.x) >= 1.0 || fabs(hit.z) >= 1.0)
+    	return false;
+	return true;
+}
+
+void makeEye (float x, float y, vec3& eye)
+{
+	vec4 tmp;
+	mat4 invViewProj = inverse(view * projection);
+
+
+	tmp = vec4(x, y, 0.0, 1) * invViewProj;
+	tmp *= 1.0/tmp.w;
+	eye = vec3(tmp);
+	eye -= camera.Position;
+}
+
+void makeDrop(vec2 clicked_vec, int width, int height)
+{
+	vec3 ray00, ray01, ray10, ray11;
+
+	makeEye(-1, -1, ray00);
+	makeEye(-1, 1, ray01);
+	makeEye(1, -1, ray10);
+	makeEye(1, 1, ray11);
+
+	vec2 pos = clicked_vec / vec2(WIDTH- 1, HEIGHT - 1);
+  	vec3 dir = mix(mix(ray00, ray01, pos.y), mix(ray10, ray11, pos.y), pos.x);
+	
+	vec3 hit;
+	//std::cout << "(" << clicked_vec.x << ", " << clicked_vec.y << ")\n";
+
+	//vec2 world_cords = vec2(projection * vec4(clicked_vec.x/(float)WIDTH, clicked_vec.x/(float)HEIGHT, 0.0, 1.0));
+	//ivec2 res = ivec2(width * (1 - 0.5*(1 + world_cords.x), height * 0.5 * (1 + world_cords.y)));
+	if (PlaneIntersection(vec4(0, 1, 0, 0), camera.Position, normalize(dir), hit))
 	{
-		std::unordered_map<GLenum, std::string> compute;
-		compute[GL_COMPUTE_SHADER] = "shaders/dropShader.comp";
-		ShaderProgram dropShader(compute);
-		dropShader.StartUseShader();
-		ivec2 rand_vec = ivec2( 1 + rand() % WATER_SIZE, 1 + rand() % WATER_SIZE);
-		dropShader.SetUniform("rand_vec", rand_vec); GL_CHECK_ERRORS;
-		dropShader.SetUniform("width", WATER_SIZE); GL_CHECK_ERRORS;
-		dropShader.SetUniform("strength", (float)(rand() % 150)/(float)10000); GL_CHECK_ERRORS;
+		ivec2 res = ivec2(width*(1 - 0.5*(1 + hit.x)),  height*0.5 * (1 + hit.z));
+		std::cout << "(" << res.x << ", " << res.y << ")\n";
+		drops.StartUseShader();
+		drops.SetUniform("rand_vec", res); GL_CHECK_ERRORS;
+		drops.SetUniform("width", WATER_SIZE); GL_CHECK_ERRORS;
+		drops.SetUniform("strength", (float)(rand() % 150)/(float)10000); GL_CHECK_ERRORS;
 		glDispatchCompute(1, 1, 1);
 		glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
-		dropShader.StopUseShader();
+		drops.StopUseShader();
 	}
 }
+
+
+

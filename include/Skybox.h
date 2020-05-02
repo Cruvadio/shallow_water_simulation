@@ -86,5 +86,11 @@ class Skybox
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap);
         }
+
+        void cleanUp()
+        {
+            glDeleteBuffers(1, &VBO);
+            glDeleteVertexArrays(1, &VAO);
+        }
 };
 #endif

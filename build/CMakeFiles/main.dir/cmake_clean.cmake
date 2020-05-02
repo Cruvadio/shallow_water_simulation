@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/Skybox.cpp.o"
   "CMakeFiles/main.dir/src/Pool.cpp.o"
   "CMakeFiles/main.dir/src/common.cpp.o"
+  "CMakeFiles/main.dir/src/Sphere.cpp.o"
   "main.pdb"
   "main"
 )

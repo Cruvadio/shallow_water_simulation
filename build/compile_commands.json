@@ -35,6 +35,11 @@
   "file": "/home/cruvadio/shallow_water_simulation/src/common.cpp"
 },
 {
+  "directory": "/home/cruvadio/shallow_water_simulation/build",
+  "command": "/usr/bin/g++-7   -I/home/cruvadio/shallow_water_simulation/dependencies/include/GLAD -I/home/cruvadio/shallow_water_simulation/external/glm-0.9.7.1 -I/home/cruvadio/shallow_water_simulation/external -I/home/cruvadio/shallow_water_simulation/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include  -g   -Wnarrowing -std=gnu++11 -o CMakeFiles/main.dir/src/Sphere.cpp.o -c /home/cruvadio/shallow_water_simulation/src/Sphere.cpp",
+  "file": "/home/cruvadio/shallow_water_simulation/src/Sphere.cpp"
+},
+{
   "directory": "/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src",
   "command": "/usr/bin/gcc-7 -DGLEW_STATIC -DTW_NO_DIRECT3D -DTW_NO_LIB_PRAGMA -DTW_STATIC -D_CRT_SECURE_NO_WARNINGS -D_GLFW_USE_CONFIG_H -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/include -I/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src -I/home/cruvadio/shallow_water_simulation/build/external/glfw-3.2.1/src  -g -fPIC   -Wall -o CMakeFiles/glfw.dir/context.c.o   -c /home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/context.c",
   "file": "/home/cruvadio/shallow_water_simulation/external/glfw-3.2.1/src/context.c"

@@ -57,26 +57,46 @@ static float vertices[] = {
 
 class Pool
 {
-    int texture;
+    int base;
+    int normal;
+    int height;
     glm::mat4 model;
     ShaderProgram shader;
     
     GLuint VAO, VBO;
 
     public:
-        Pool (const glm::mat4 mod,const ShaderProgram& shader, const std::string& path);
+        Pool(const glm::mat4 mod,
+           const ShaderProgram& shader,
+           const std::string& base,
+           const std::string& normals);
 
         void drawPool(const glm::mat4& projection, 
                     const glm::mat4& view, 
                     const glm::vec3& lightPos,
                     const glm::vec3& cameraPos,
-                    const glm::vec3& lightColor = vec3(1.0)
+                    const glm::vec3& sphereCenter,
+                    float sphereRadius,
+                    int width,
+                    int height
                    );
 
         void bindTexture(GLenum t)
         {
             glActiveTexture(t);
-            glBindTexture(GL_TEXTURE_2D, texture);
+            glBindTexture(GL_TEXTURE_2D, base);
+
+            glActiveTexture(t + 1);
+            glBindTexture(GL_TEXTURE_2D, normal);
+
+            //glActiveTexture(t + 2);
+            //glBindTexture(GL_TEXTURE_2D, height);
+        }
+
+        void cleanUp()
+        {
+            glDeleteBuffers(1, &VBO);
+            glDeleteVertexArrays(1, &VAO);
         }
 
 };

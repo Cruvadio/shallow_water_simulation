@@ -1,12 +1,17 @@
 #include "Pool.h"
 
-Pool::Pool(const glm::mat4 mod,const ShaderProgram& shader, const std::string& path)
+Pool::Pool(const glm::mat4 mod,
+           const ShaderProgram& shader,
+           const std::string& base,
+           const std::string& normals)
 {
-    texture = loadTexture(path.c_str());
+    this->base = loadTexture(base.c_str());
+    this->normal = loadTexture(normals.c_str());
     model = mod;
     this->shader = shader;
     this->shader.StartUseShader();
     this->shader.SetUniform("wallTexture", 0);
+    this->shader.SetUniform("normalMap", 1);
     this->shader.StopUseShader();
 
     glGenVertexArrays(1, &VAO);
@@ -26,26 +31,40 @@ void Pool::drawPool(const glm::mat4& projection,
                     const glm::mat4& view, 
                     const glm::vec3& lightPos,
                     const glm::vec3& cameraPos,
-                    const glm::vec3& lightColor
+                    const glm::vec3& sphereCenter,
+                    float sphereRadius,
+                    int width,
+                    int height
                    )
 {
     glEnable(GL_CULL_FACE);
     //glCullFace(GL_FRONT);
     glEnable(GL_DEPTH_TEST);
-    shader.StartUseShader();
-    shader.SetUniform("model", model);
-    shader.SetUniform("projection", projection);
-    shader.SetUniform("view", view);
-    shader.SetUniform("lightPos", lightPos);
-    shader.SetUniform("cameraPos", cameraPos);
-    shader.SetUniform("lightColor", lightColor);
+    shader.StartUseShader(); GL_CHECK_ERRORS;
+    shader.SetUniform("model", model); GL_CHECK_ERRORS;
+    shader.SetUniform("projection", projection); GL_CHECK_ERRORS;
+    shader.SetUniform("view", view); GL_CHECK_ERRORS;
+    shader.SetUniform("lightPos", lightPos); GL_CHECK_ERRORS;
+    //shader.SetUniform("cameraPos", cameraPos);
+    shader.SetUniform("sphereCenter", sphereCenter); GL_CHECK_ERRORS;
+    shader.SetUniform("sphereRadius", sphereRadius); GL_CHECK_ERRORS;
+    shader.SetUniform("width", width); GL_CHECK_ERRORS;
+    shader.SetUniform("height", height); GL_CHECK_ERRORS;
 
-    glBindVertexArray(VAO);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glDrawArrays(GL_TRIANGLES, 0, 30);
+    glBindVertexArray(VAO); GL_CHECK_ERRORS;
+    glActiveTexture(GL_TEXTURE0); GL_CHECK_ERRORS;
+    glBindTexture(GL_TEXTURE_2D, base); GL_CHECK_ERRORS;
 
-    shader.StopUseShader();
+    glActiveTexture(GL_TEXTURE1); GL_CHECK_ERRORS;
+    glBindTexture(GL_TEXTURE_2D, normal); GL_CHECK_ERRORS;
+
+    glActiveTexture(GL_TEXTURE2); GL_CHECK_ERRORS;
+    glBindTexture(GL_TEXTURE_2D, this->height); GL_CHECK_ERRORS;
+
+
+    glDrawArrays(GL_TRIANGLES, 0, 30); GL_CHECK_ERRORS;
+
+    shader.StopUseShader(); GL_CHECK_ERRORS;
     glDisable(GL_CULL_FACE);
 }
 

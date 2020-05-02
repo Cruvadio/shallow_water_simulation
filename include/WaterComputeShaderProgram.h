@@ -49,6 +49,16 @@ class WaterComputeShaderProgram : public ShaderProgram
         void bindNormals() const;
         void bindTextureCoords() const;
 
+        void cleanUp()
+        {
+            glDeleteBuffers(1, &SSBO_A);
+            glDeleteBuffers(1, &SSBO_B);
+            glDeleteBuffers(1, &SSBO_C);
+            glDeleteBuffers(1, &SSBO_V);
+            glDeleteBuffers(1, &SSBO_N);
+            glDeleteBuffers(1, &SSBO_T);
+        }
+
     private:
     
         void createBuffers ();

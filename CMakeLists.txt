@@ -14,6 +14,7 @@ set(SOURCE_FILES
     src/Skybox.cpp
     src/Pool.cpp
     src/common.cpp
+    src/Sphere.cpp
     )
 
 set(ADDITIONAL_INCLUDE_DIRS
@@ -43,18 +44,20 @@ include_directories(${ADDITIONAL_INCLUDE_DIRS})
 
 find_package(OpenGL REQUIRED)
 
-add_executable(main ${SOURCE_FILES})
+add_executable(shallow_water ${SOURCE_FILES})
 
-target_include_directories(main PRIVATE ${OPENGL_INCLUDE_DIR})
-add_custom_command(TARGET main POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/shaders" "${PROJECT_BINARY_DIR}/shaders")
+target_include_directories(shallow_water PRIVATE ${OPENGL_INCLUDE_DIR})
+add_custom_command(TARGET shallow_water POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/shaders" "${PROJECT_BINARY_DIR}/shaders")
+add_custom_command(TARGET shallow_water POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/textures" "${PROJECT_BINARY_DIR}/textures")
+add_custom_command(TARGET shallow_water POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/models" "${PROJECT_BINARY_DIR}/models")
 
 if(WIN32)
-  add_custom_command(TARGET main POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/dependencies/bin" $<TARGET_FILE_DIR:main>)
+  add_custom_command(TARGET shallow_water POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_SOURCE_DIR}/dependencies/bin" $<TARGET_FILE_DIR:main>)
   #set(CMAKE_MSVCIDE_RUN_PATH ${ADDITIONAL_RUNTIME_LIBRARY_DIRS})
-  target_compile_options(main PRIVATE)
-  target_link_libraries(main LINK_PUBLIC ${OPENGL_gl_LIBRARY} glfw3dll)
+  target_compile_options(shallow_water PRIVATE)
+  target_link_libraries(shallow_water LINK_PUBLIC ${OPENGL_gl_LIBRARY} glfw3dll)
 else()
-  target_compile_options(main PRIVATE -Wnarrowing)
-  target_link_libraries(main LINK_PUBLIC ${OPENGL_gl_LIBRARY} glfw rt dl)
+  target_compile_options(shallow_water PRIVATE -Wnarrowing)
+  target_link_libraries(shallow_water LINK_PUBLIC ${OPENGL_gl_LIBRARY} glfw rt dl)
 endif()
 
