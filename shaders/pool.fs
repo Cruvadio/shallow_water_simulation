@@ -137,17 +137,10 @@ vec3 getWallColor(vec3 point) {
 
 void main()
 {
-  /*
-  const vec3	c1 = vec3 ( 0.0, 0.4, 0.3);
-	const vec3	c2 = vec3 ( 0.0, 0.3, 0.7);
-*/
-
-  //const vec3	c1 = vec3(0.4, 0.9, 1.0);
   float ambientStrength = 0.1;
   vec3 ambient = ambientStrength * lightColor;
   vec3 N = normalize(normal);
-  //if (gl_FrontFacing) N = normalize(normal);
-  //else N = -normalize(normal);
+
   vec3 L = normalize(lightPos - fragPos);
   vec3 V = normalize(cameraPos - fragPos);
 
@@ -161,30 +154,60 @@ void main()
   vec3 refractColor;
 
   int index = countIndex(fragPos);
+  float	ca = dot( V, N);
 
-  float d = intersectSphere(fragPos, normalize(Rr), sphereCenter, sphereRadius);
-  if (d < 1.0e6)
-    refractColor = getSphereColor(fragPos + d * normalize(Rr), L);
-  else
-    refractColor = getWallColor(fragPos + t.y * normalize(Rr), L, index);
-  refractColor *= waterColor;
-  t = intersectCube(fragPos, normalize(R), vec3(-1, -1, -1), vec3(1, 2, 1));
-  vec3 point = fragPos + R * t.y;
-  if (point.y > 2.0/12.0)
-    reflectColor = texture(skybox, R).rgb;
-  else
-    reflectColor = getWallColor(point, L, index) * waterColor;
+  vec3 Color;
+  if (ca > 0)
+  {
+    float d = intersectSphere(fragPos, normalize(Rr), sphereCenter, sphereRadius);
+    if (d < 1.0e6)
+      refractColor = getSphereColor(fragPos + d * normalize(Rr), L);
+    else
+      refractColor = getWallColor(fragPos + t.y * normalize(Rr), L, index);
+    refractColor *= waterColor;
+    t = intersectCube(fragPos, normalize(R), vec3(-1, -1, -1), vec3(1, 2, 1));
+    vec3 point = fragPos + R * t.y;
+    if (point.y > 2.0/12.0)
+      reflectColor = texture(skybox, R).rgb;
+    else
+      reflectColor = getWallColor(point, L, index) * waterColor;
+      ca = mix(0.25, 1.0, pow(1.0 - dot(N, V), 3.0));
 
-  float	ca = clamp(dot( V, N), 0.0, 1.0);
+      Color = mix(refractColor, reflectColor, ca);
+  }
+  else 
+  {
+    Rr = refract(-V, -N, IOR_WATER/ IOR_AIR);
+    R = reflect(-V, -N);
+    float d = intersectSphere(fragPos, normalize(R), sphereCenter, sphereRadius);
+    if (d < 1.0e6)
+      reflectColor = getSphereColor(fragPos + d * normalize(R), L);
+    else
+      reflectColor = getWallColor(fragPos + t.y * normalize(R), L, index);
+    reflectColor *= waterColor;
+    t = intersectCube(fragPos, normalize(Rr), vec3(-1, -1, -1), vec3(1, 2, 1));
+    vec3 point = fragPos + Rr * t.y;
+    if (point.y < 2.0/12.0)
+    {
+      refractColor = getWallColor(point, L, index);
+    }
+    else
+    {
+      refractColor = texture(skybox, Rr).rgb;
+      refractColor += vec3(pow(max(0.0, dot(L, Rr)), 5000.0)) * vec3(10.0, 8.0, 6.0);
+    }
 
-  vec3 Color = mix(reflectColor, refractColor, ca);
+      refractColor *= vec3(1.0, 1.1, 1.0);
+      ca = mix(0.25, 1.0, pow(1.0 - dot(N, V), 3.0));
 
-  //Color = mix(Color, waterColor, 0.2);
+      Color = mix(reflectColor, refractColor,  ca * length(Rr) * 0.2);
+  }
+  
 
   vec3 reflectDir = reflect(-L, N);  
 
   float specularStrength = 2;
-  float spec = pow(max(dot(V, reflectDir), 0.0), 32) * (1 - ca);
+  float spec = pow(max(dot(V, reflectDir), 0.0), 64) * (1 - ca);
   vec3 specular = specularStrength * spec * lightColor;  
 
 
@@ -194,5 +217,4 @@ void main()
   vec3 result = (ambient + diffuse + specular) * Color;
 
   color = vec4(result, 1.0);
-  //color = vec4(1.0);
 }

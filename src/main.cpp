@@ -29,7 +29,7 @@ static const GLint NUM_DROPS = 10;
 unsigned int indexbuffer;
 
 vec3 lightColor = vec3(1.0);
-vec3 lightPos = vec3(2.0, 2.2, 1.0);
+vec3 lightPos = vec3(2.0, 3.2, 1.0);
 
 unsigned int VAO;
 
@@ -150,14 +150,6 @@ int main(int argc, char** argv)
 	ShaderProgram dropShader(compute);
 	drops = dropShader;
 
-// order:
-// +X (right)
-// -X (left)
-// +Y (top)
-// -Y (bottom)
-// +Z (front) 
-// -Z (back)
-// -------------------------------------------------------
 	glGenVertexArrays(1, &VAO);
 	std::vector<std::string> textures{
 		"textures/posx.jpg",
@@ -182,7 +174,7 @@ int main(int argc, char** argv)
 
 	for(int i = 0; i < NUM_DROPS; i++)
 		makeDrop();
-	//цикл обработки сообщений и отрисовки сцены каждый кадр
+
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = glfwGetTime();
@@ -240,8 +232,7 @@ void processInput(GLFWwindow *window)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
+
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 
@@ -254,8 +245,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     	}
 
     	float xoffset = xpos - lastX;
-    	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
-
+    	float yoffset = lastY - ypos; 
     	lastX = xpos;
     	lastY = ypos;
 
@@ -265,16 +255,10 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	{
 		firstMouse = true;
 	}
-	/*
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
-	{
-		makeDrop(vec2(xpos, ypos), WATER_SIZE, WATER_SIZE);
-	}*/
 	
 }
 
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
+
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(yoffset);
@@ -320,11 +304,11 @@ void	createIndexBuffer (int width, int height)
 	for ( int i = 1; i < width - 1; i++ )
 		for ( int j = 1; j < height - 1; j++ )
 		{
-			data [k]   = i + width*j;				// first triangle (i,j)-(i+1,j) - (i,j+1)
+			data [k]   = i + width*j;				
 			data [k+1] = i + width*j + 1;
 			data [k+2] = i + width*j + width;
 			
-			data [k+3] = i + width*j + 1;			// second triangle (i+1,j)-(i+1,j+1) - (i,j+1)
+			data [k+3] = i + width*j + 1;			
 			data [k+4] = i + width*j + width + 1;
 			data [k+5] = i + width *j + width;
 			k+= 6;
@@ -403,63 +387,3 @@ void makeDrop()
 	glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
 	drops.StopUseShader();
 }
-
-
-bool PlaneIntersection(const vec4& plane,const vec3& origin, const vec3& dir, vec3& hit)
-{
-    vec3 N = normalize(vec3(plane));
-    float L = dot(dir,N);
-    if (L == 0) return false;
-    float t0 = -(dot(origin,N)+plane.w)/L;
-    if(t0<=0)return false;
-    hit=origin+dir*t0;
-    if (fabs(hit.x) >= 1.0 || fabs(hit.z) >= 1.0)
-    	return false;
-	return true;
-}
-
-void makeEye (float x, float y, vec3& eye)
-{
-	vec4 tmp;
-	mat4 invViewProj = inverse(view * projection);
-
-
-	tmp = vec4(x, y, 0.0, 1) * invViewProj;
-	tmp *= 1.0/tmp.w;
-	eye = vec3(tmp);
-	eye -= camera.Position;
-}
-
-void makeDrop(vec2 clicked_vec, int width, int height)
-{
-	vec3 ray00, ray01, ray10, ray11;
-
-	makeEye(-1, -1, ray00);
-	makeEye(-1, 1, ray01);
-	makeEye(1, -1, ray10);
-	makeEye(1, 1, ray11);
-
-	vec2 pos = clicked_vec / vec2(WIDTH- 1, HEIGHT - 1);
-  	vec3 dir = mix(mix(ray00, ray01, pos.y), mix(ray10, ray11, pos.y), pos.x);
-	
-	vec3 hit;
-	//std::cout << "(" << clicked_vec.x << ", " << clicked_vec.y << ")\n";
-
-	//vec2 world_cords = vec2(projection * vec4(clicked_vec.x/(float)WIDTH, clicked_vec.x/(float)HEIGHT, 0.0, 1.0));
-	//ivec2 res = ivec2(width * (1 - 0.5*(1 + world_cords.x), height * 0.5 * (1 + world_cords.y)));
-	if (PlaneIntersection(vec4(0, 1, 0, 0), camera.Position, normalize(dir), hit))
-	{
-		ivec2 res = ivec2(width*(1 - 0.5*(1 + hit.x)),  height*0.5 * (1 + hit.z));
-		std::cout << "(" << res.x << ", " << res.y << ")\n";
-		drops.StartUseShader();
-		drops.SetUniform("rand_vec", res); GL_CHECK_ERRORS;
-		drops.SetUniform("width", WATER_SIZE); GL_CHECK_ERRORS;
-		drops.SetUniform("strength", (float)(rand() % 150)/(float)10000); GL_CHECK_ERRORS;
-		glDispatchCompute(1, 1, 1);
-		glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
-		drops.StopUseShader();
-	}
-}
-
-
-

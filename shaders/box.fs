@@ -76,11 +76,7 @@ vec3 getWallColor(vec3 point,in vec3 L, int index) {
 
     vec3 refractedLight = -refract(-L, vec3(0.0, 1.0, 0.0), IOR_AIR / IOR_WATER);
     float diffuse = max(0.0, dot(refractedLight, normal));
-    /*if (point.y > Hcurr[index])
-    {
-        vec2 t = intersectCube(point, refractedLight, vec3(-1.0, -1.0, -1.0), vec3(1.0, 2.0, 1.0));
-        diffuse *= 1.0 / (1.0 + exp(-200.0 / (1.0 + 10.0 * (t.y - t.x)) * (point.y + refractedLight.y * t.y - 2.0 / 12.0)));
-    }*/
+  
     scale += diffuse * 0.5;
     return wallColor * scale;
     }
@@ -112,34 +108,12 @@ int countIndex( vec3 fragPos)
 
 void main ()
 {
-  /*
-    float ambientStrength = 0.1;
-  vec3 ambient = ambientStrength * lightColor;
 
-  vec3 N = normalize(normal);;
-  vec3 L = normalize(lightPos - fragPos);
-  vec3 V = normalize(cameraPos - fragPos);
-
-  vec3 reflectDir = reflect(-L, N);  
-
-  float specularStrength = 2;
-  float spec = pow(max(dot(V, reflectDir), 0.0), 32);
-  vec3 specular = specularStrength * spec * lightColor;  
-
-
-  float diff = max(dot(N, L), 0.0);
-  vec3 diffuse = diff * lightColor;
-
-  vec3 result = (ambient + diffuse + specular) * texture(wallTexture, texCoord).rgb;*/
   vec3 L = normalize(lightPos - fragPos);
   vec3 V = normalize(cameraPos - gl_FragCoord.xyz);
 
   int index = countIndex(fragPos);
   vec3 result;
-  /*float d = intersectSphere(cameraPos, V, sphereCenter, sphereRadius);
-  if (d < 1.0e6)
-    result = getSphereColor(cameraPos + d * V, L);
-  else*/
     result = getWallColor(fragPos, L, index);
 
   

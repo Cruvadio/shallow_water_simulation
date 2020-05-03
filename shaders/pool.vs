@@ -16,5 +16,4 @@ void main(void)
   fragPos      = vec3(model * aVertex);
   normal       = mat3(transpose(inverse(model))) * vec3(aNormal); 
   gl_Position  = projection * view * model * aVertex;
-  //gl_PointSize = 2;
 }
