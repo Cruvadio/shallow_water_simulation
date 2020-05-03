@@ -34,19 +34,17 @@ unsigned int Skybox::loadCubeMap (const std::vector<std::string> textures)
 
 void Skybox::drawSkybox(const mat4& projection, const mat4& view)
 {
-     // draw skybox as last
-        glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
+        glDepthFunc(GL_LEQUAL); 
         shader.StartUseShader();
         this->view = glm::mat4(glm::mat3(view));
-        this->projection = projection; // remove translation from the view matrix
+        this->projection = projection; 
         shader.SetUniform("view", this->view);
         shader.SetUniform("projection", projection);
-        // skybox cube
         glBindVertexArray(VAO);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
         shader.StopUseShader();
-        glDepthFunc(GL_LESS); // set depth function back to default
+        glDepthFunc(GL_LESS); 
 }

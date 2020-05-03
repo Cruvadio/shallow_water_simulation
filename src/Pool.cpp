@@ -38,14 +38,12 @@ void Pool::drawPool(const glm::mat4& projection,
                    )
 {
     glEnable(GL_CULL_FACE);
-    //glCullFace(GL_FRONT);
     glEnable(GL_DEPTH_TEST);
     shader.StartUseShader(); GL_CHECK_ERRORS;
     shader.SetUniform("model", model); GL_CHECK_ERRORS;
     shader.SetUniform("projection", projection); GL_CHECK_ERRORS;
     shader.SetUniform("view", view); GL_CHECK_ERRORS;
     shader.SetUniform("lightPos", lightPos); GL_CHECK_ERRORS;
-    //shader.SetUniform("cameraPos", cameraPos);
     shader.SetUniform("sphereCenter", sphereCenter); GL_CHECK_ERRORS;
     shader.SetUniform("sphereRadius", sphereRadius); GL_CHECK_ERRORS;
     shader.SetUniform("width", width); GL_CHECK_ERRORS;
@@ -58,8 +56,6 @@ void Pool::drawPool(const glm::mat4& projection,
     glActiveTexture(GL_TEXTURE1); GL_CHECK_ERRORS;
     glBindTexture(GL_TEXTURE_2D, normal); GL_CHECK_ERRORS;
 
-    glActiveTexture(GL_TEXTURE2); GL_CHECK_ERRORS;
-    glBindTexture(GL_TEXTURE_2D, this->height); GL_CHECK_ERRORS;
 
 
     glDrawArrays(GL_TRIANGLES, 0, 30); GL_CHECK_ERRORS;

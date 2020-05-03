@@ -59,8 +59,6 @@ void Sphere::drawSphere(const glm::mat4& projection,
     shader.SetUniform("view", view);
     shader.SetUniform("model", model);
     shader.SetUniform("lightPos", lightPos);
-    //shader.SetUniform("cameraPos", cameraPos);
-    //shader.SetUniform("sphereCenter", sphereCenter);
     shader.SetUniform("sphereRadius", sphereRadius);
     shader.SetUniform("width", width);
     shader.SetUniform("height", height);

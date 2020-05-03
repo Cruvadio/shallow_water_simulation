@@ -41,17 +41,10 @@ static float vertices[] = {
     //bottom
      1.0f, -1.0f,  1.0f,  0.0f, 1.0f,  0.0f,  1.0f, 0.0f,
      1.0f, -1.0f, -1.0f,  0.0f, 1.0f,  0.0f,  1.0f, 1.0f,
-     -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,  0.0f,  0.0f, 1.0f,
-     -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,  0.0f,  0.0f, 1.0f,
+    -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,  0.0f,  0.0f, 1.0f,
+    -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,  0.0f,  0.0f, 1.0f,
     -1.0f, -1.0f,  1.0f,  0.0f, 1.0f,  0.0f,  0.0f, 0.0f,
      1.0f, -1.0f,  1.0f,  0.0f, 1.0f,  0.0f,  1.0f, 0.0f,
-    /*
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f */
 };
 
 
@@ -88,9 +81,6 @@ class Pool
 
             glActiveTexture(t + 1);
             glBindTexture(GL_TEXTURE_2D, normal);
-
-            //glActiveTexture(t + 2);
-            //glBindTexture(GL_TEXTURE_2D, height);
         }
 
         void cleanUp()

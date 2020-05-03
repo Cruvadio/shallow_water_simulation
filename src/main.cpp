@@ -18,7 +18,7 @@
 
 
 const float sphereRadius = 0.4;
-const vec3 sphereCenter = vec3(-0.2, -0.5999, -0.2);
+const vec3 sphereCenter = vec3(-0.6, -0.62, -0.6);
 ShaderProgram drops;
 
 
@@ -42,7 +42,7 @@ mat4 projection = mat4(1.0);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void mousebutton_callback(GLFWwindow* window, int button, int action, int mods);
-void processInput(GLFWwindow *window);
+//void processInput(GLFWwindow *window);
 void calculateHeights (WaterComputeShaderProgram& shader, int width, int height);
 GLuint createTexture (int width, int height);
 void	createIndexBuffer (int width, int height);
@@ -55,6 +55,12 @@ void makeDrop();
 void makeDrop(vec2 clicked_vec, int width, int height);
 
 Camera camera(glm::vec3(0.0f, 0.5f, 1.5f));
+
+Camera camera1 (glm::vec3(-2, 1.5, 3), vec3(0, 1, 0), -56, -30);
+Camera camera2 (glm::vec3(1.5, 0.4, -0.05), vec3(0, 1, 0), -182, -6);
+Camera camera3 (glm::vec3(-0.7, 2.7, 1.4), vec3(0, 1, 0), -60, -64);
+
+
 float lastX = WIDTH / 2.0f;
 float lastY = HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -125,12 +131,13 @@ int main(int argc, char** argv)
 	shaders[GL_VERTEX_SHADER]   = "shaders/pool.vs";
 	shaders[GL_FRAGMENT_SHADER] = "shaders/pool.fs";
 	ShaderProgram waterProgram(shaders); GL_CHECK_ERRORS;
+
 	waterProgram.StartUseShader();
 	waterProgram.SetUniform("skybox", 0);GL_CHECK_ERRORS;
 	waterProgram.SetUniform("wallTexture", 1);GL_CHECK_ERRORS;
 	waterProgram.SetUniform("normalMap", 2);GL_CHECK_ERRORS;
-	//waterProgram.SetUniform("heightMap", 3);GL_CHECK_ERRORS;
 	waterProgram.StopUseShader();
+
 	shaders[GL_VERTEX_SHADER]   = "shaders/skybox.vs";
 	shaders[GL_FRAGMENT_SHADER] = "shaders/skybox.fs";
 	ShaderProgram skyboxShader(shaders); GL_CHECK_ERRORS;
@@ -150,14 +157,6 @@ int main(int argc, char** argv)
 	ShaderProgram dropShader(compute);
 	drops = dropShader;
 
-// order:
-// +X (right)
-// -X (left)
-// +Y (top)
-// -Y (bottom)
-// +Z (front) 
-// -Z (back)
-// -------------------------------------------------------
 	glGenVertexArrays(1, &VAO);
 	std::vector<std::string> textures{
 		"textures/posx.jpg",
@@ -167,13 +166,17 @@ int main(int argc, char** argv)
 		"textures/posz.jpg",
 		"textures/negz.jpg",
 	};
+
+	camera = camera1;
+
 	mat4 mat = glm::scale(mat4(1.0), vec3(1., 7./12., 1.));
 	mat = translate(mat, vec3(0, -0.75, 0));
+
 	Pool pool(mat, poolShader, "textures/Stones/Pebbles_017_baseColor.jpg", "textures/Stones/Pebbles_017_normal.jpg");
 	Skybox skybox(textures, skyboxShader);
 	Sphere sphere("models/sphere.obj", sphereShader, sphereRadius, sphereCenter);
 
-  	glfwSwapInterval(1); // force 60 frames per second
+  	glfwSwapInterval(1); 
 	createIndexBuffer(WATER_SIZE, WATER_SIZE);
 	mat4 rot = rotate(model, radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
 	model = rot * model;
@@ -182,7 +185,7 @@ int main(int argc, char** argv)
 
 	for(int i = 0; i < NUM_DROPS; i++)
 		makeDrop();
-	//цикл обработки сообщений и отрисовки сцены каждый кадр
+
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentFrame = glfwGetTime();
@@ -192,7 +195,7 @@ int main(int argc, char** argv)
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);               GL_CHECK_ERRORS;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
 
-		processInput(window);
+		//processInput(window);
 		glfwPollEvents();
 
 
@@ -205,6 +208,7 @@ int main(int argc, char** argv)
 		view = camera.GetViewMatrix();
 		projection = perspective(radians(camera.Zoom), (float)WIDTH/(float)HEIGHT, 0.1f, 100.f);
 		
+
 		sphere.drawSphere(projection, view, lightPos, camera.Position, WATER_SIZE, WATER_SIZE);
 		pool.drawPool(projection, view, lightPos, camera.Position,sphereCenter, sphereRadius, WATER_SIZE, WATER_SIZE);
 		skybox.bindTexture();
@@ -228,23 +232,9 @@ int main(int argc, char** argv)
 }
 
 
-void processInput(GLFWwindow *window)
-{
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime);
-}
-
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
-
+	/*
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
     	if (firstMouse)    	{
@@ -254,8 +244,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     	}
 
     	float xoffset = xpos - lastX;
-    	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
-
+    	float yoffset = lastY - ypos; 
     	lastX = xpos;
     	lastY = ypos;
 
@@ -264,20 +253,14 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	else 
 	{
 		firstMouse = true;
-	}
-	/*
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
-	{
-		makeDrop(vec2(xpos, ypos), WATER_SIZE, WATER_SIZE);
 	}*/
+
 	
 }
 
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera.ProcessMouseScroll(yoffset);
+   // camera.ProcessMouseScroll(yoffset);
 }
 
 
@@ -307,7 +290,19 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 	else if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-	
+
+	else if (key == GLFW_KEY_F1 && action == GLFW_PRESS)
+	{
+		camera = camera1;
+	}
+	else if (key == GLFW_KEY_F2 && action == GLFW_PRESS)
+	{
+		camera = camera2;
+	}
+	else if (key == GLFW_KEY_F3 && action == GLFW_PRESS)
+	{
+		camera = camera3;
+	}
 
 	
 }
@@ -350,9 +345,11 @@ void calculateHeights (WaterComputeShaderProgram& shader, int width, int height)
 	
 	glBindVertexArray(VAO);  GL_CHECK_ERRORS;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);  GL_CHECK_ERRORS;
+	
 	GLintptr vertex_texcoord_offset = 0 * sizeof(GLfloat);
 	GLintptr vertex_normal_offset =  0 * sizeof(GLfloat);
 	GLintptr vertex_position_offset = 0;
+
 	shader.bindPositions();
 	glEnableVertexAttribArray(0);  GL_CHECK_ERRORS;
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vec4), (GLvoid*)vertex_position_offset);  GL_CHECK_ERRORS;
@@ -374,6 +371,7 @@ void drawWater (const ShaderProgram& waterShader, int width, int height)
 {
 	if (wireframe)
 		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+
 	waterShader.StartUseShader(); GL_CHECK_ERRORS;
 	waterShader.SetUniform("view", view); GL_CHECK_ERRORS;
 	waterShader.SetUniform("projection", projection); GL_CHECK_ERRORS;
@@ -383,11 +381,14 @@ void drawWater (const ShaderProgram& waterShader, int width, int height)
 	waterShader.SetUniform("cameraPos", camera.Position); GL_CHECK_ERRORS;
 	waterShader.SetUniform("sphereRadius", sphereRadius); GL_CHECK_ERRORS;
 	waterShader.SetUniform("sphereCenter", sphereCenter); GL_CHECK_ERRORS;
+
 	glBindVertexArray(VAO); GL_CHECK_ERRORS;
 	glDrawElements(GL_TRIANGLES, (width-2)*(height-2)*6, GL_UNSIGNED_INT, NULL); GL_CHECK_ERRORS;
+
 	glBindVertexArray(0); GL_CHECK_ERRORS;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+
 	waterShader.StopUseShader();
 } 
 
@@ -402,63 +403,6 @@ void makeDrop()
 	glDispatchCompute(1, 1, 1);
 	glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
 	drops.StopUseShader();
-}
-
-
-bool PlaneIntersection(const vec4& plane,const vec3& origin, const vec3& dir, vec3& hit)
-{
-    vec3 N = normalize(vec3(plane));
-    float L = dot(dir,N);
-    if (L == 0) return false;
-    float t0 = -(dot(origin,N)+plane.w)/L;
-    if(t0<=0)return false;
-    hit=origin+dir*t0;
-    if (fabs(hit.x) >= 1.0 || fabs(hit.z) >= 1.0)
-    	return false;
-	return true;
-}
-
-void makeEye (float x, float y, vec3& eye)
-{
-	vec4 tmp;
-	mat4 invViewProj = inverse(view * projection);
-
-
-	tmp = vec4(x, y, 0.0, 1) * invViewProj;
-	tmp *= 1.0/tmp.w;
-	eye = vec3(tmp);
-	eye -= camera.Position;
-}
-
-void makeDrop(vec2 clicked_vec, int width, int height)
-{
-	vec3 ray00, ray01, ray10, ray11;
-
-	makeEye(-1, -1, ray00);
-	makeEye(-1, 1, ray01);
-	makeEye(1, -1, ray10);
-	makeEye(1, 1, ray11);
-
-	vec2 pos = clicked_vec / vec2(WIDTH- 1, HEIGHT - 1);
-  	vec3 dir = mix(mix(ray00, ray01, pos.y), mix(ray10, ray11, pos.y), pos.x);
-	
-	vec3 hit;
-	//std::cout << "(" << clicked_vec.x << ", " << clicked_vec.y << ")\n";
-
-	//vec2 world_cords = vec2(projection * vec4(clicked_vec.x/(float)WIDTH, clicked_vec.x/(float)HEIGHT, 0.0, 1.0));
-	//ivec2 res = ivec2(width * (1 - 0.5*(1 + world_cords.x), height * 0.5 * (1 + world_cords.y)));
-	if (PlaneIntersection(vec4(0, 1, 0, 0), camera.Position, normalize(dir), hit))
-	{
-		ivec2 res = ivec2(width*(1 - 0.5*(1 + hit.x)),  height*0.5 * (1 + hit.z));
-		std::cout << "(" << res.x << ", " << res.y << ")\n";
-		drops.StartUseShader();
-		drops.SetUniform("rand_vec", res); GL_CHECK_ERRORS;
-		drops.SetUniform("width", WATER_SIZE); GL_CHECK_ERRORS;
-		drops.SetUniform("strength", (float)(rand() % 150)/(float)10000); GL_CHECK_ERRORS;
-		glDispatchCompute(1, 1, 1);
-		glMemoryBarrier   ( GL_SHADER_STORAGE_BARRIER_BIT );
-		drops.StopUseShader();
-	}
 }
 
 

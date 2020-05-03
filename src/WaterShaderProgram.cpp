@@ -8,7 +8,6 @@
 void WaterComputeShaderProgram::createBuffers()
 {
 	GLfloat * data = new GLfloat[width * height];
-	//memset(&data,0,sizeof(GLfloat) * width * height);
 	for (int i = 0; i < width * height; i++)
 	{
 		data[i] = 0.0;
@@ -64,7 +63,6 @@ void WaterComputeShaderProgram::initializeBuffer()
 	glGenBuffers(1, &SSBO_T);
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, SSBO_T);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, width * height * sizeof(vec4), texCoords, GL_STATIC_DRAW);
-	//glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 5, SSBO_T);
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
 	delete[] positions;
